@@ -1,0 +1,91 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="400" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">WebGL 坐标系统转换</text>
+  
+  <!-- 坐标系统图 -->
+  <g transform="translate(50, 70)">
+    <!-- 模型坐标系 -->
+    <rect x="0" y="0" width="160" height="120" rx="5" ry="5" fill="#e6f7ff" stroke="#1890ff" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">模型坐标系</text>
+    <text x="80" y="50" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">(100, 100, 0, 1)</text>
+    <text x="80" y="70" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">自定义坐标</text>
+    <text x="80" y="90" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">原点在左上角</text>
+    
+    <!-- 投影矩阵 -->
+    <rect x="220" y="40" width="120" height="40" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="2"/>
+    <text x="280" y="65" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">投影矩阵</text>
+    
+    <!-- 裁剪坐标系 -->
+    <rect x="400" y="0" width="160" height="120" rx="5" ry="5" fill="#fff7e6" stroke="#fa8c16" stroke-width="2"/>
+    <text x="480" y="25" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">裁剪坐标系</text>
+    <text x="480" y="50" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">(-1 到 1 范围)</text>
+    <text x="480" y="70" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">标准化设备坐标</text>
+    <text x="480" y="90" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">原点在中心</text>
+    
+    <!-- 屏幕坐标系 -->
+    <rect x="620" y="0" width="160" height="120" rx="5" ry="5" fill="#fff0f6" stroke="#eb2f96" stroke-width="2"/>
+    <text x="700" y="25" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">屏幕坐标系</text>
+    <text x="700" y="50" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">(0 到 canvas.width,</text>
+    <text x="700" y="70" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">0 到 canvas.height)</text>
+    <text x="700" y="90" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">像素坐标</text>
+    
+    <!-- 连接箭头 -->
+    <g stroke="#666" stroke-width="2" fill="none">
+      <!-- 模型坐标到投影矩阵 -->
+      <path d="M 160,60 L 220,60" marker-end="url(#arrowhead)"/>
+      <!-- 投影矩阵到裁剪坐标 -->
+      <path d="M 340,60 L 400,60" marker-end="url(#arrowhead)"/>
+      <!-- 裁剪坐标到屏幕坐标 -->
+      <path d="M 560,60 L 620,60" marker-end="url(#arrowhead)"/>
+    </g>
+  </g>
+  
+  <!-- 坐标系统示例 -->
+  <g transform="translate(50, 220)">
+    <!-- 模型坐标系示例 -->
+    <rect x="20" y="0" width="120" height="120" fill="#f0f0f0" stroke="#ccc" stroke-width="1"/>
+    <line x1="20" y1="0" x2="20" y2="120" stroke="#333" stroke-width="2"/>
+    <line x1="20" y1="0" x2="140" y2="0" stroke="#333" stroke-width="2"/>
+    <text x="15" y="135" font-family="Arial" font-size="12" text-anchor="end" fill="#333">(0,0)</text>
+    <text x="140" y="135" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">X</text>
+    <text x="10" y="60" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Y</text>
+    <circle cx="70" cy="50" r="5" fill="blue"/>
+    <text x="80" y="45" font-family="Arial" font-size="10" fill="#333">(100,100)</text>
+    
+    <!-- 裁剪坐标系示例 -->
+    <rect x="300" y="0" width="120" height="120" fill="#f0f0f0" stroke="#ccc" stroke-width="1"/>
+    <line x1="360" y1="0" x2="360" y2="120" stroke="#333" stroke-width="2"/>
+    <line x1="300" y1="60" x2="420" y2="60" stroke="#333" stroke-width="2"/>
+    <text x="360" y="135" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">(0,0)</text>
+    <text x="420" y="60" font-family="Arial" font-size="12" text-anchor="start" fill="#333">X</text>
+    <text x="360" y="10" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Y</text>
+    <circle cx="380" cy="40" r="5" fill="blue"/>
+    <text x="390" y="35" font-family="Arial" font-size="10" fill="#333">(0.4,-0.4)</text>
+    
+    <!-- 屏幕坐标系示例 -->
+    <rect x="580" y="0" width="120" height="120" fill="#f0f0f0" stroke="#ccc" stroke-width="1"/>
+    <line x1="580" y1="0" x2="580" y2="120" stroke="#333" stroke-width="2"/>
+    <line x1="580" y1="0" x2="700" y2="0" stroke="#333" stroke-width="2"/>
+    <text x="575" y="135" font-family="Arial" font-size="12" text-anchor="end" fill="#333">(0,0)</text>
+    <text x="700" y="135" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">X</text>
+    <text x="570" y="60" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Y</text>
+    <circle cx="630" cy="50" r="5" fill="blue"/>
+    <text x="640" y="45" font-family="Arial" font-size="10" fill="#333">(250,250)</text>
+  </g>
+  
+  <!-- 说明文本 -->
+  <g transform="translate(200, 370)">
+    <text x="0" y="0" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">mat4.ortho(0, canvas.width, canvas.height, 0, -1, 1, projMat4)</text>
+    <text x="0" y="20" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">正交投影矩阵将画布坐标转换为裁剪坐标</text>
+  </g>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+</svg>

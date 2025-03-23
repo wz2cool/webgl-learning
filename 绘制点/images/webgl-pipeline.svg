@@ -1,0 +1,73 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="400" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">WebGL 渲染管线</text>
+  
+  <!-- 流程框 -->
+  <g transform="translate(50, 70)">
+    <!-- JavaScript 代码 -->
+    <rect x="0" y="0" width="120" height="60" rx="5" ry="5" fill="#e6f7ff" stroke="#1890ff" stroke-width="2"/>
+    <text x="60" y="35" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">JavaScript 代码</text>
+    
+    <!-- 顶点着色器 -->
+    <rect x="170" y="0" width="120" height="60" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="2"/>
+    <text x="230" y="35" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">顶点着色器</text>
+    
+    <!-- 图元装配 -->
+    <rect x="340" y="0" width="120" height="60" rx="5" ry="5" fill="#fff7e6" stroke="#fa8c16" stroke-width="2"/>
+    <text x="400" y="35" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">图元装配</text>
+    
+    <!-- 光栅化 -->
+    <rect x="510" y="0" width="120" height="60" rx="5" ry="5" fill="#fff0f6" stroke="#eb2f96" stroke-width="2"/>
+    <text x="570" y="35" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">光栅化</text>
+    
+    <!-- 片元着色器 -->
+    <rect x="170" y="110" width="120" height="60" rx="5" ry="5" fill="#f9f0ff" stroke="#722ed1" stroke-width="2"/>
+    <text x="230" y="145" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">片元着色器</text>
+    
+    <!-- 帧缓冲操作 -->
+    <rect x="340" y="110" width="120" height="60" rx="5" ry="5" fill="#f0f5ff" stroke="#2f54eb" stroke-width="2"/>
+    <text x="400" y="145" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">帧缓冲操作</text>
+    
+    <!-- 屏幕显示 -->
+    <rect x="510" y="110" width="120" height="60" rx="5" ry="5" fill="#e6fffb" stroke="#13c2c2" stroke-width="2"/>
+    <text x="570" y="145" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">屏幕显示</text>
+    
+    <!-- 连接箭头 -->
+    <g stroke="#666" stroke-width="2" fill="none">
+      <!-- JavaScript 到顶点着色器 -->
+      <path d="M 120,30 L 170,30" marker-end="url(#arrowhead)"/>
+      <!-- 顶点着色器到图元装配 -->
+      <path d="M 290,30 L 340,30" marker-end="url(#arrowhead)"/>
+      <!-- 图元装配到光栅化 -->
+      <path d="M 460,30 L 510,30" marker-end="url(#arrowhead)"/>
+      <!-- 光栅化到片元着色器 -->
+      <path d="M 570,60 L 570,80 L 230,80 L 230,110" marker-end="url(#arrowhead)"/>
+      <!-- 片元着色器到帧缓冲操作 -->
+      <path d="M 290,140 L 340,140" marker-end="url(#arrowhead)"/>
+      <!-- 帧缓冲操作到屏幕显示 -->
+      <path d="M 460,140 L 510,140" marker-end="url(#arrowhead)"/>
+    </g>
+  </g>
+  
+  <!-- 说明文本 -->
+  <g transform="translate(50, 250)">
+    <text x="0" y="0" font-family="Arial" font-size="16" fill="#333" font-weight="bold">WebGL渲染管线说明:</text>
+    <text x="0" y="30" font-family="Arial" font-size="14" fill="#333">1. JavaScript代码: 设置顶点数据、着色器程序和绘制命令</text>
+    <text x="0" y="55" font-family="Arial" font-size="14" fill="#333">2. 顶点着色器: 处理每个顶点的位置和属性</text>
+    <text x="0" y="80" font-family="Arial" font-size="14" fill="#333">3. 图元装配: 将顶点组装成图元（点、线、三角形）</text>
+    <text x="0" y="105" font-family="Arial" font-size="14" fill="#333">4. 光栅化: 将图元转换为片元（像素）</text>
+    <text x="0" y="130" font-family="Arial" font-size="14" fill="#333">5. 片元着色器: 处理每个片元的颜色和其他属性</text>
+    <text x="0" y="155" font-family="Arial" font-size="14" fill="#333">6. 帧缓冲操作: 将片元写入帧缓冲区</text>
+    <text x="0" y="180" font-family="Arial" font-size="14" fill="#333">7. 屏幕显示: 最终渲染结果显示在屏幕上</text>
+  </g>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+</svg>

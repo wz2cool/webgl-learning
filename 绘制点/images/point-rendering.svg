@@ -1,0 +1,55 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="600" height="400" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="300" y="30" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">WebGL 点绘制效果</text>
+  
+  <!-- Canvas 模拟 -->
+  <rect x="100" y="70" width="400" height="250" fill="#000" stroke="#ccc" stroke-width="2"/>
+  
+  <!-- 绘制的点 -->
+  <circle cx="200" cy="170" r="30" fill="#0000ff" opacity="0.9">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
+  </circle>
+  
+  <!-- 坐标标记 -->
+  <line x1="100" y1="70" x2="500" y2="70" stroke="#ccc" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="100" y1="170" x2="500" y2="170" stroke="#ccc" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="100" y1="270" x2="500" y2="270" stroke="#ccc" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <line x1="100" y1="70" x2="100" y2="320" stroke="#ccc" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="200" y1="70" x2="200" y2="320" stroke="#ccc" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="300" y1="70" x2="300" y2="320" stroke="#ccc" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="400" y1="70" x2="400" y2="320" stroke="#ccc" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="500" y1="70" x2="500" y2="320" stroke="#ccc" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- 坐标文本 -->
+  <text x="100" y="340" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">0</text>
+  <text x="200" y="340" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">100</text>
+  <text x="300" y="340" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">200</text>
+  <text x="400" y="340" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">300</text>
+  <text x="500" y="340" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">400</text>
+  
+  <text x="80" y="70" font-family="Arial" font-size="12" text-anchor="end" fill="#666">0</text>
+  <text x="80" y="170" font-family="Arial" font-size="12" text-anchor="end" fill="#666">100</text>
+  <text x="80" y="270" font-family="Arial" font-size="12" text-anchor="end" fill="#666">200</text>
+  
+  <!-- 点位置标记 -->
+  <line x1="200" y1="165" x2="200" y2="175" stroke="#fff" stroke-width="1"/>
+  <line x1="195" y1="170" x2="205" y2="170" stroke="#fff" stroke-width="1"/>
+  
+  <!-- 说明文本 -->
+  <g transform="translate(300, 350)">
+    <text x="0" y="0" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">点坐标: (100, 100)</text>
+    <text x="0" y="20" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">点大小: 60.0 像素</text>
+    <text x="0" y="40" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">点颜色: RGB(0, 0, 255)</text>
+  </g>
+  
+  <!-- 着色器代码提示 -->
+  <g transform="translate(500, 120)">
+    <rect x="-80" y="-15" width="160" height="40" rx="5" ry="5" fill="#fff" stroke="#ccc" stroke-width="1" opacity="0.9"/>
+    <text x="0" y="0" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">gl_PointSize = 60.0;</text>
+    <text x="0" y="20" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">gl_FragColor = blue;</text>
+  </g>
+</svg>
