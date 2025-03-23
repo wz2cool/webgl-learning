@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>绘制点坐标</title>
+    <script src="./glMatrix-0.9.6.min.js"></script>
+    <script>
+        var gl;
+        var projMat4 = mat4.create();
+        var vertexString = `
+            // 一个点的坐标
+            attribute vec4 a_Position;
+            // 承接投影坐标系
+            uniform mat4 u_ProjMatrix;
+            void main() {
+                // 计算点的坐标(顶点着色器)
+                gl_Position = u_ProjMatrix * a_Position;
+                gl_PointSize = 60.0;
+            }
+        `;
+        // 片元着色器
+        var fragmentString = `
+            void main() {
+                // 绘制点的颜色
+                gl_FragColor = vec4(0.0, 0.0, 1.0, 1.0);
+            } 
+        `;
+        // 入口函数
+        function init() {
+            console.log("init");
+            initWebGL();
+            initShaders();
+            initBuffers();
+            draw();
+        }
+
+        // webgl 初始化
+        function initWebGL() {
+            let webglcanvas = document.getElementById("webglcanvas");
+            gl = webglcanvas.getContext("webgl");
+            if (!gl) {
+                console.log("webgl 初始化失败");
+                return;
+            }
+            // viewport 方法作用是：设置视口的大小和位置
+            // viewport 的参数是：left, top, width, height
+            // viewport 的参数中文意思是：左、上、宽、高
+            gl.viewport(0, 0, webglcanvas.width, webglcanvas.height);
+            // 投影矩阵
+            // ortho 方法作用是：创建一个正交投影矩阵
+            // ortho 的参数是：left, right, bottom, top, near, far, dest
+            // ortho 的参数中文意思是：左、右、下、上、近、远、目标矩阵
+            mat4.ortho(0, webglcanvas.clientWidth, webglcanvas.clientHeight, 0, -1, 1, projMat4);
+        }
+
+        // shader 初始化
+        function initShaders() {
+            // 创建顶点着色器
+            let vsshader = gl.createShader(gl.VERTEX_SHADER);
+            // 创建片元着色器
+            let fssagder = gl.createShader(gl.FRAGMENT_SHADER);
+            // 着色器源码
+            gl.shaderSource(vsshader, vertexString);
+            // 编译着色器
+            gl.shaderSource(fssagder, fragmentString);
+
+            gl.compileShader(vsshader);
+            gl.compileShader(fssagder);
+
+            let program = gl.createProgram();
+            // 链接程序
+            gl.attachShader(program, vsshader);
+            // 链接程序
+            gl.attachShader(program, fssagder);
+            // 链接程序
+            gl.linkProgram(program);
+            // 使用程序
+            gl.useProgram(program);
+            // 为了方便以后获取属性
+            gl.program = program;
+        }
+
+        // 缓冲区初始化
+        function initBuffers() {
+            // 顶点坐标 
+            let pointPosition = new Float32Array([
+                100.0, 100.0, 0.0, 1.0
+            ]);
+            let aPosition = gl.getAttribLocation(gl.program, "a_Position");
+            // 创建缓冲区, 4fv： 为 4 个 float 类型的数组（注意不是4个数组，而是每个参数都是数组，每个数组内元素个数为4）
+            gl.vertexAttrib4fv(aPosition, pointPosition);
+            // 投影矩阵
+            let uniformProj = gl.getUniformLocation(gl.program, "u_ProjMatrix");
+            // 传递投影矩阵 
+            // 参数：uniformProj： 投影矩阵的位置，false： 不转置，projMat4： 投影矩阵
+            gl.uniformMatrix4fv(uniformProj, false, projMat4);
+        }
+
+        // 绘制
+        function draw() {
+            // 清空画布, 一般为黑色
+            gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            // 清空画布
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            // 绘制点
+            // 参数：gl.POINTS： 绘制点，0： 从第 0 个点开始绘制，1： 绘制 1 个点
+            gl.drawArrays(gl.POINTS, 0, 1);
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <canvas id="webglcanvas" width="500" height="500">
+    </canvas>
+</body>
+
+</html>
